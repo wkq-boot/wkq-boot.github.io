@@ -29,7 +29,8 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+<meta name="generator" content="Hexo 5.4.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 
 
@@ -476,7 +477,7 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h3 id="实验三-身份证号码分析"><a href="#实验三-身份证号码分析" class="headerlink" title="实验三:身份证号码分析"></a>实验三:身份证号码分析</h3><p>身份证号码验证及个人信息输出。<br>在网页、管理信息系统中，我们经常会要求用户输入身份证号码，由于身份<br>证号码较长，经常容易产生录入错误，本验证可以有效防止用户录用错误。<br>其实身份证中还包含了用户的个人信息，包含出生地、生日、性别的等内容。<br>如：51 01 03 19XX 01 03 028 X 为：省 市 区 出生年 月 日 顺序码 校验码<br>1、身份证验证主要包含：<br>(1) 位数错误：正确应该为 18 位。<br>(2) 字符错误：前面 17 个应该是数字，最后一位可以为‘X’或‘x’；<br>(3)校验码错误：<br>身份证的最后一位为校验码，校验码是用于验证前面的数字是否有错误，校<br>验码运算规则：<br>（1）先将最后一位设定为 0。<br>（2）效验码的计算公式为：(Σ (ai×wi))%11<br> 其中：i 是从右向左的包括效验码在内的序号（1－18）<br>ai 是第 i 位的数字<br>wi 是第 i 位上的加权因子，其数值依据公式 wi=(2(i-1))%11，（计算 ab：函<br>数为：java.lang.Math.pow(a,b)） i，ai，wi 的对应关系如下：<br>证号码：5 1 0 1 0 1 1 9 8 8 0 8 0 8 0 1 2 0<br> i：18 17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1<br> ai：5 1 0 1 0 1 1 9 8 8 0 8 0 8 0 1 2 0<br>wi: 用公式计算 2^(i-1)%11 …… 9 10 5 8 4 2 1<br>（3）求出(Σ (ai×wi))%11 之后依据下表得到效验码：<br><img src="/2021/05/08/java%E5%AE%9E%E9%AA%8C%E4%B8%89/1.jpg"><br>（3）计算 ab：函数为：java.lang.Math.pow(a,b)<br>2、个人信息输出主要包含：<br>(1) 生日：如 1985 年 5 月 9 日。<br>(2) 年龄：如 20 岁，应当精确到日；<br>(3) 性别：顺序码的计数为，男性以奇数计数，女性以偶数计数<br><strong>要求：</strong><br>（1）编写一个身份证类，包含一个属性：身份证号；三个验证函数；一个<br>信息输出函数。<br>（2）编写一个测试类，可从键盘上输入一个身份证号码，产生一个身份证<br>对象，然后调用其相关方法对身份证号码进行验证，没有通过验证的话，提示错<br>误信息并让用户重新输入，如果通过验证，则输出该人的信息。</p>
-<h3 id="CardID类"><a href="#CardID类" class="headerlink" title="CardID类"></a>CardID类</h3><pre class=" language-bash"><code class="language-bash">package cn.itcast.Sy1test1<span class="token punctuation">;</span>
+<h3 id="CardID类"><a href="#CardID类" class="headerlink" title="CardID类"></a>CardID类</h3><pre class="line-numbers language-bash"><code class="language-bash">package cn.itcast.Sy1test1<span class="token punctuation">;</span>
 
 <span class="token function">import</span> java.text.ParseException<span class="token punctuation">;</span>
 <span class="token function">import</span> java.text.SimpleDateFormat<span class="token punctuation">;</span>
@@ -656,7 +657,36 @@ public class CardID <span class="token punctuation">{</span>
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="CardIDDemo测试类："><a href="#CardIDDemo测试类：" class="headerlink" title="CardIDDemo测试类："></a>CardIDDemo测试类：</h3><pre class="line-numbers language-bash"><code class="language-bash">package cn.itcast.Sy1test1<span class="token punctuation">;</span>
+
+<span class="token function">import</span> java.util.Scanner<span class="token punctuation">;</span>
+
+public class CardIDDemo <span class="token punctuation">{</span>
+    public static void main<span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    while<span class="token punctuation">(</span>true<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        scanner<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    private static void scanner<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Scanner input<span class="token operator">=</span>new Scanner<span class="token punctuation">(</span>System.in<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System.out.println<span class="token punctuation">(</span><span class="token string">"请输入你的身份证号："</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        String sc<span class="token operator">=</span>input.next<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        CardID cardID<span class="token operator">=</span>new CardID<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>cardID.lengthVerify<span class="token punctuation">(</span>sc<span class="token punctuation">))</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>cardID.charVerify<span class="token punctuation">(</span>sc<span class="token punctuation">))</span> <span class="token punctuation">{</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>cardID.checkCodeVerify<span class="token punctuation">(</span>sc<span class="token punctuation">))</span> <span class="token punctuation">{</span>
+                    cardID.output<span class="token punctuation">(</span>sc<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>else <span class="token punctuation">{</span>
+                    scanner<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>else <span class="token punctuation">{</span>
+                scanner<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>else <span class="token punctuation">{</span>
+            scanner<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
                 
             </div>
@@ -1005,7 +1035,7 @@ public class CardID <span class="token punctuation">{</span>
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">3k</span>&nbsp;字
+                class="white-color">3.1k</span>&nbsp;字
             
             
             

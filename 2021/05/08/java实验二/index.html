@@ -29,7 +29,8 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+<meta name="generator" content="Hexo 5.4.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 
 
@@ -476,7 +477,7 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h3 id="实验二：复数类的实现及运算"><a href="#实验二：复数类的实现及运算" class="headerlink" title="实验二：复数类的实现及运算"></a>实验二：复数类的实现及运算</h3><p>定义一个复数类，并实现以下复数类的方法：构造方法、得到实部、得到虚部、设置实部、设置虚部、复数的加法，减法，乘法，最后，创建对象进行运算。<br><strong>1、复数类 Complex 必须满足如下要求：<br>(1) 复数类 Complex 的属性有：</strong><br>realPart : double 型 ，私有属性，代表复数的实数部分<br>imaginPart : double 型 ，私有属性，代表复数的虚数部分<br><strong>(2) 复数类 Complex 的构造方法有：</strong><br>Complex( ) : 构造函数，将复数的实部和虚部都置 0。<br>Complex( double r , double i ) : 构造函数，形参 r 为实部的初值，i 为虚部的<br>初值。<br><strong>(3) 复数类 Complex 的公有方法有：</strong><br>void setReal(): 设置复数对象的实部值；<br>void setImagin (): 设置复数对象的虚部值；<br>double getReal(): 获得复数对象的实部数值；<br>double getImagin (): 获得复数对象的虚部数值；<br>Complex complexAdd(Complex a) : 将当前复数对象与形参复数对象相加，所<br>得的结果仍是一个复数值，返回给此方法的调用者。<br>说明：（a+bi）+(c+di)= (a+c)+(b+d)i<br>Complex complexSub(Complex a) : 将当前复数对象与形参复数对象相减，所<br>得的结果仍是一个复数值，返回给此方法的调用者。<br>Complex complexMulti(Complex a) : 将当前复数对象与形参复数对象相乘，所<br>得的结果仍是一个复数值，返回给此方法的调用者。<br>说明：（a+bi）*(c+di)=ac+bci+adi+bdi2=(ac-bd)+(bc+ad)i<br>Complex complexDiv(Complex a) : 将当前复数对象与形参复数对象相除，所<br>得的结果仍是一个复数值，返回给此方法的调用者。<br>说明：复数相除其实采用的是分子分母同时乘以分母的共轭复数，用以将分母的<br>虚部消除掉，除法可调用乘法进行计算更简便。 boolean equals(Complex a) : 将当前复数对象与形参复数对象进行比较，判断是<br>否相等，返回一个布尔值。<br>String toString( ) : 把当前复数对象的实部、虚部组合成 a+bi 的字符串形式，其<br>中 a 和 b 分别为实部和虚部的数据，注意特殊数值的情况，如实部为 0、虚部为负，<br>等等情况的表现方法。<br>常见复数的写法有：3+2i，3-2i，4+i，4-i，1，0，-2i，i，-i 等(应当编写一个数<br>组，存入以上 9 个复数，然后循环一次性全部输出，便于检查)。<br><strong>2、定义个 ComplexDemo 类：</strong><br>该类是程序的入口，要求能在主方法中创建至少 3 个复数（两个做操作数，通过<br>键盘输入实部和虚部创建，一个做结果，不需实部和虚部），然后调用上述方法进行<br>运算，并打印相应结果进行观察<br><strong>Complex类</strong></p>
-<pre class=" language-bash"><code class="language-bash">package cn.itcast.Sy1test1<span class="token punctuation">;</span>
+<pre class="line-numbers language-bash"><code class="language-bash">package cn.itcast.Sy1test1<span class="token punctuation">;</span>
 
 <span class="token function">import</span> java.text.DecimalFormat<span class="token punctuation">;</span>
 <span class="token function">import</span> java.util.Scanner<span class="token punctuation">;</span>
@@ -529,7 +530,7 @@ public class Complex <span class="token punctuation">{</span>
         double newi1 <span class="token operator">=</span> i1 + imagin<span class="token punctuation">;</span>
         <span class="token keyword">return</span> new Complex<span class="token punctuation">(</span>newr1, newi1<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h3><p><img src="/2021/05/08/java%E5%AE%9E%E9%AA%8C%E4%BA%8C/%E7%BB%93%E6%9E%9C1.jpg"></p>
 
                 
@@ -877,7 +878,7 @@ public class Complex <span class="token punctuation">{</span>
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">3k</span>&nbsp;字
+                class="white-color">3.1k</span>&nbsp;字
             
             
             
